@@ -1,11 +1,11 @@
 <?php
-namespace Redirecter\Lib;
+namespace Redirector\Lib;
 
-use Redirecter\Lib\Urls\RedirectUrl;
-use Redirecter\Lib\Urls\FailedUrl;
-use Redirecter\Lib\Urls\UrlInterface;
+use Redirector\Lib\Urls\RedirectUrl;
+use Redirector\Lib\Urls\FailedUrl;
+use Redirector\Lib\Urls\UrlInterface;
 
-class Redirecter 
+class Redirector
 {
     /**
      * Array of redirects
@@ -15,7 +15,7 @@ class Redirecter
     private $redirects = [];
 
     /**
-     * Construct the redirecter
+     * Construct the Redirector
      *
      * @param array $redirects
      * @return void
@@ -29,7 +29,7 @@ class Redirecter
      * Find the correct matching redirect for the given url
      *
      * @param string $url The path part of the url
-     * @return \Redirecter\Lib\Urls\UrlInterface
+     * @return \Redirector\Lib\Urls\UrlInterface
      */
     public function find(string $url): UrlInterface
     {
@@ -42,7 +42,7 @@ class Redirecter
                 return new FailedUrl(null, $redirect['code']);
             }
         }
-        
+
         foreach ($this->redirects as $redirectUrl => $target) {
             // Only interested if it has :slug or *
             if (\stripos($redirectUrl, ':slug') === false && \stripos($redirectUrl, '*') === false) {
@@ -64,7 +64,7 @@ class Redirecter
                     }
                 }
             }
-            
+
             // Match with star
             if (\stripos($redirectUrl, '*') !== false) {
                 $urlToMatch = preg_replace('/\/?\*/', '', $redirectUrl);

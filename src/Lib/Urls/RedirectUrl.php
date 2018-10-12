@@ -1,5 +1,5 @@
 <?php
-namespace Redirecter\Lib\Urls;
+namespace Redirector\Lib\Urls;
 
 class RedirectUrl implements UrlInterface
 {

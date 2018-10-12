@@ -1,11 +1,11 @@
 <?php
-namespace Redirecter\Lib\Urls;
+namespace Redirector\Lib\Urls;
 
 class FailedUrl implements UrlInterface
 {
     /**
      * The text to send with the response
-     * 
+     *
      * @var string
      */
     private $responseText = '(╯°□°）╯︵ ┻━┻';

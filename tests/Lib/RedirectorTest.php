@@ -2,18 +2,18 @@
 namespace Tests\Lib;
 
 use PHPUnit\Framework\TestCase;
-use Redirecter\Lib\Redirecter;
-use Redirecter\Lib\Urls\RedirectUrl;
-use Redirecter\Lib\Urls\FailedUrl;
+use Redirector\Lib\Redirector;
+use Redirector\Lib\Urls\RedirectUrl;
+use Redirector\Lib\Urls\FailedUrl;
 
-class RedirecterTest extends TestCase
+class RedirectorTest extends TestCase
 {
     /**
-     * Instance of the Redirecter
+     * Instance of the Redirector
      *
-     * @var \Redirecter\Lib\Redirecter
+     * @var \Redirector\Lib\Redirector
      */
-    private $Redirecter;
+    private $Redirector;
 
     public function setUp()
     {
@@ -51,7 +51,7 @@ class RedirecterTest extends TestCase
             ]
         ];
 
-        $this->Redirecter = new Redirecter($redirects);
+        $this->Redirector = new Redirector($redirects);
     }
 
     public function findDataProvider()
@@ -69,14 +69,14 @@ class RedirecterTest extends TestCase
 
     /**
      * Test the redirect finder method
-     * 
+     *
      * @dataProvider findDataProvider
      *
      * @return void
      */
     public function testFind(string $url, ?string $expectedUrl, int $code)
     {
-        $result = $this->Redirecter->find($url);
+        $result = $this->Redirector->find($url);
         $expected = new RedirectUrl($expectedUrl, $code);
 
         $this->assertEquals($expected, $result);
@@ -86,8 +86,8 @@ class RedirecterTest extends TestCase
     {
         $url = '/catalogs/view/top-5-broadband-packages';
         $code = 410;
-        
-        $result = $this->Redirecter->find($url);
+
+        $result = $this->Redirector->find($url);
         $expected = new FailedUrl(null, $code);
 
         $this->assertEquals($expected, $result);
@@ -97,8 +97,8 @@ class RedirecterTest extends TestCase
     {
         $url = '/catalogs/view/top-5-fastest-broadband';
         $code = 410;
-        
-        $result = $this->Redirecter->find($url);
+
+        $result = $this->Redirector->find($url);
         $expected = new FailedUrl(null, $code);
 
         $this->assertEquals($expected, $result);

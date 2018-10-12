@@ -1,5 +1,5 @@
 {
-    "name": "ukwm/seo-redirecter",
+    "name": "ukwm/seo-redirector",
     "type": "library",
     "require": {
         "php": "^7.2"
@@ -16,7 +16,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Redirecter\\": "src/"
+            "Redirector\\": "src/"
         }
     },
     "autoload-dev": {
