@@ -26,12 +26,12 @@ class Redirector
     }
 
     /**
-     * Find the correct matching redirect for the given url
+     * Find the correct matching redirect for the given url or null if no redirect is found
      *
      * @param string $url The path part of the url
-     * @return \Redirector\Lib\Urls\UrlInterface
+     * @return \Redirector\Lib\Urls\UrlInterface|null
      */
-    public function find(string $url): UrlInterface
+    public function find(string $url): ?UrlInterface
     {
         if (isset($this->redirects[$url])) {
             $redirect = $this->redirects[$url];
@@ -78,6 +78,6 @@ class Redirector
             }
         }
 
-        return new FailedUrl(null, 404);
+        return null;
     }
 }
