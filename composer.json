@@ -1,5 +1,5 @@
 {
-    "name": "ukwm/seo-redirector",
+    "name": "davidyell/seo-redirector",
     "type": "library",
     "require": {
         "php": "^7.2"
