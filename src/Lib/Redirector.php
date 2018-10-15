@@ -55,11 +55,13 @@ class Redirector
                 $pattern = \str_replace(':slug', '([\w-]+)', $escaped);
 
                 if (preg_match('/' . $pattern . '/i', $url, $slugMatches, PREG_UNMATCHED_AS_NULL)) {
-                    $slug = $slugMatches[1];
+                    $numberOfMatches = count($slugMatches) - 1;
+                    $targetUrl = $target['target'];
+                    for ($i = 1; $i <= $numberOfMatches; $i++) {
+                        $targetUrl = \preg_replace('/:slug/i', $slugMatches[$i], $targetUrl, 1);
+                    }
 
-                    $targetUrl = \str_replace(':slug', $slug, $target['target']);
-
-                    if ((int)\substr($target['code'], 0, 1) === 3) {
+                    if (isset($targetUrl) && (int)\substr($target['code'], 0, 1) === 3) {
                         return new RedirectUrl($targetUrl, $target['code']);
                     }
                 }

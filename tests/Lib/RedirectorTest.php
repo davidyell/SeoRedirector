@@ -48,6 +48,10 @@ class RedirectorTest extends TestCase
             '/blog/*' => [
                 'target' => '/guides',
                 'code' => 301
+            ],
+            '/products/:slug/:slug' => [
+                'target' => '/providers/:slug/products/:slug',
+                'code' => 301
             ]
         ];
 
@@ -63,7 +67,8 @@ class RedirectorTest extends TestCase
             ['/type/student-broadband', '/broadband-types', 301],
             ['/blog', '/guides', 301],
             ['/blog/2019/05/12/example-post', '/guides', 301],
-            ['/providers/sky/products', '/providers/products/sky', 302]
+            ['/providers/sky/products', '/providers/products/sky', 302],
+            ['/products/virgin-media/example-product', '/providers/virgin-media/products/example-product', 301]
         ];
     }
 
